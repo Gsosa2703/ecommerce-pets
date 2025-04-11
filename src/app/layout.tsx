@@ -29,11 +29,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
           <Navbar />
-          {/* Global navigation can go here */}
-        <main>{children}</main>
-        <footer>
-          <p>My Site Footer</p>
-        </footer>
+          <main>{children}</main>
+          <footer>
+            <p>My Site Footer</p>
+          </footer>
       </body>
     </html>
   );

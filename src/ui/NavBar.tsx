@@ -28,9 +28,9 @@ export default function NavBar() {
   const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);
 
   return (
-    <header className="w-full sticky top-0 z-50 bg-white">
+    <header className="w-full sticky top-0 z-100 bg-white">
       {/* Top Banner */}
-      <div className="hidden md:flex justify-between w-full items-center bg-yellow-200 px-4 py-2">
+      <div className="hidden md:flex justify-between w-full items-center bg-yellow-200 px-4 py-3">
         <p className="text-sm font-semibold text-gray-700 text-center w-full">
           Compare top-rated pet insurance plans – Save up to $373 each year –
           Get a custom quote
@@ -39,7 +39,7 @@ export default function NavBar() {
 
       {/* Main Nav */}
       <nav className="bg-white shadow-md">
-        <div className="mx-auto px-4 py-4 text-lg">
+        <div className="mx-auto px-4 py-2 text-lg">
           <div className="flex items-center w-full h-16">
             {/* Left: Logo */}
             <Link href="/">

@@ -125,3 +125,7 @@ html,
 body {
   font-family: var(--font-montserrat), sans-serif;
 }
+
+.swiper{
+  padding: calc(var(--spacing) * 6) !important;
+}
