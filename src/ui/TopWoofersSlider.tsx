@@ -21,7 +21,7 @@ export default function CarouselSize() {
        opts={{
          align: "start",
        }}
-       className= "w-full md:w-auto ml-4 pt-5">
+       className= "w-full md:w-auto ml-4 pt-10">
        <CarouselContent>
          {woofers.map((woofer, index) => (
            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 md:w-[150px] lg:w-[250px] xl:w-[270px]">

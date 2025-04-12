@@ -33,13 +33,13 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   } = usePrevNextButtons(emblaApi)
 
   return (
-   <section className="embla pt-10">
+   <section className="embla pt-20">
     <div className="embla__viewport overflow-hidden" ref={emblaRef}>
       <div className="embla__container flex">
         {testimonials.map((testimonial, index) => (
                       <div
                         key={index}
-                        className={`embla__slide flex-none w-full md:w-1/3`}
+                        className={`embla__slide flex flex-col items-center flex-none w-full md:w-1/3 px-10`}
                       >
                         <div className="">
                           <Image
@@ -48,14 +48,14 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                             width={100} height={100}
                           />
                         </div>
-                        <div>
+                        <div className='mt-3 flex items-center justify-center'>
                           {Array.from({ length: 5 }).map((_, i) => (
                            <StarIcon key={i} className="h-6 w-6 text-orange-400 fill-orange-400" aria-hidden="true" />
                           ))}
                          </div>
 
-                         <span>{testimonial.name}</span>
-                        <p className="text-xl whitespace-nowrap font-bold pt-3 text-gray-600">{testimonial.description}</p>
+                        <span className="mt-3 text-lg">{testimonial.name}</span>
+                        <p className="font-light text-gray-600 mt-4 h-[150px] max-h-[150px] overflow-y-auto scrollbar-hide text-lg">{testimonial.description}</p>
                       </div>
         ))}
       </div>

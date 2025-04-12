@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/ui/NavBar";
-
 import { Montserrat } from "next/font/google";
+import Footer from "@/ui/Footer";
 
 // Configure Montserrat – adjust weights or subsets as necessary
 const montserrat = Montserrat({
@@ -31,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
           <Navbar />
           <main>{children}</main>
+          <Footer />
       </body>
     </html>
   );

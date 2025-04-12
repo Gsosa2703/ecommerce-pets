@@ -76,6 +76,8 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --bg-gray-237: rgb(237, 237, 237);
 }
 
 .dark {
@@ -133,4 +135,9 @@ body {
 img{
   max-width: none;
   height: inherit;
+}
+
+.testimonials-container{
+  background-color: var(--bg-gray-237) ;
+  width: 100%;
 }
