@@ -129,3 +129,8 @@ body {
 .swiper{
   padding: calc(var(--spacing) * 6) !important;
 }
+
+img{
+  max-width: none;
+  height: inherit;
+}

@@ -24,15 +24,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={montserrat.variable}>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <head>
         <title>My Ecommerce & Blog App</title>
       </head>
       <body>
           <Navbar />
           <main>{children}</main>
-          <footer>
-            <p>My Site Footer</p>
-          </footer>
       </body>
     </html>
   );

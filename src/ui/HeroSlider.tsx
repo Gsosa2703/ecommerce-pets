@@ -28,10 +28,6 @@ export default function ServicesSlider() {
         navigation
         pagination={{ clickable: true }}
         onClick={(swiper) => {
-         console.log("click")
-         console.log(swiper)
-         console.log(swiper.clickedIndex)
-
          setActiveIndex(swiper.clickedIndex)
         }}
         breakpoints={{
@@ -72,11 +68,11 @@ export default function ServicesSlider() {
       </Swiper>
 
       {/* Detailed content for the currently active slide */}
-      <div className="flex justify-between items-center bg-white p-9 rounded-bl-lg rounded-br-lg shadow-md">
-        <p className="w-[70%] text-gray-700 font-medium mb-4 text-2xl">{activeService.description}</p>
-        <div className="w-[30%] pl-4">
+      <div className="flex flex-col md:flex-row justify-between items-center flex-wrap bg-white p-9 rounded-bl-lg rounded-br-lg shadow-md">
+        <p className="md:w-[70%] text-gray-700 font-medium mb-4 md:text-2xl">{activeService.description}</p>
+        <div className="md:w-[30%] pl-4">
          <Link href={`services/${activeService.slug}`}>
-           <button className="w-full text-xl font-bold cursor-pointer px-5 py-2 bg-orange-400 text-white rounded hover:bg-orange-500">
+           <button className="w-full md:text-xl font-bold cursor-pointer px-5 py-2 bg-orange-400 text-white rounded hover:bg-orange-500">
              {activeService.buttonLabel}
            </button>
          </Link>

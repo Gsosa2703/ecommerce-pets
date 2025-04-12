@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-// shadcn/ui components (make sure these match your project paths):
 import {
   NavigationMenu,
   NavigationMenuList,

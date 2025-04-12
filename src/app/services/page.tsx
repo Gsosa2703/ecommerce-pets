@@ -1,4 +1,4 @@
-import { services } from '@/lib/services'
+import { services } from '@/lib/home'
 import Service from '@/ui/Service'
  
 export default async function Page() {
