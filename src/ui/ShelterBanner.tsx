@@ -6,7 +6,7 @@ export default function ShelterBanner() {
     <section className="w-full flex flex-col items-center pt-10 overflow-hidden relative">
       
       
-      <div className=" w-full h-full flex flex-col md:flex-row justify-center items-center bg-no-repeat bg-cover pt-20"  style={{backgroundImage: 'url(/hearts-bg.svg)'}}>
+      <div className=" w-full h-full flex flex-col md:flex-row justify-center items-center bg-no-repeat bg-cover pt-20 px-15"  style={{backgroundImage: 'url(/hearts-bg.svg)'}}>
 
       <div className="flex flex-col items-center pt-30 md:pt-50">
          <Image

@@ -78,6 +78,7 @@
   --sidebar-ring: oklch(0.708 0 0);
 
   --bg-gray-237: rgb(237, 237, 237);
+  --tw-gradient-to-position: ;
 }
 
 .dark {
