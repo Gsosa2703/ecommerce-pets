@@ -26,7 +26,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/outline'
-import { Separator } from '@/components/ui/separator'
 
 const ITEMS_PER_PAGE = 9
 
@@ -52,17 +51,25 @@ export default function Service({ params }: { params: Promise<{ slug: string }> 
   function handleSearch(searchText: string) {
     // Filter logic: name or bio includes searchText
     // setFilteredWoofers(...)
+
+    console.log(searchText)
+    console.log(filteredWoofers)
+    setFilteredWoofers([])
   }
   function handleToggleVerified(checked: boolean) {
     // Filter only verified woofers
     // setFilteredWoofers(...)
+    console.log(checked)
   }
   function handleDateChange(date?: DateRange | undefined) {
     // Filter by availability
+    console.log(date)
   }
 
   const [sortKey, setSortKey] = useState<'rating' | 'reviews'>('rating')
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
+
+  console.log(sortOrder, sortKey)
 
   return (
     <section className="w-full overflow-x-hidden">
@@ -85,26 +92,22 @@ export default function Service({ params }: { params: Promise<{ slug: string }> 
       </div>
 
       <div className='md:px-24 pt-10 w-full flex justify-end xl:pr-40'>
+        <Popover>
+          <PopoverTrigger className="cursor-pointer border-2 border-gray-300 rounded-lg p-2 hover:bg-gray-100 transition duration-200 ease-in-out">
+            <AdjustmentsHorizontalIcon className="h-6 w-6 text-green-400" aria-hidden="true" />
+          </PopoverTrigger>
 
-      <Popover>
-        <PopoverTrigger className="cursor-pointer border-2 border-gray-300 rounded-lg p-2 hover:bg-gray-100 transition duration-200 ease-in-out">
-          <AdjustmentsHorizontalIcon className="h-6 w-6 text-green-400" aria-hidden="true" />
-        </PopoverTrigger>
-
-          <PopoverContent>
-          <SortingBar
-            defaultValue="rating-desc"
-            onChange={(key, order) => {
-              setSortKey(key)
-              setSortOrder(order)
-            }}
-          />
-          </PopoverContent>
-        </Popover>
+            <PopoverContent>
+            <SortingBar
+              defaultValue="rating-desc"
+              onChange={(key, order) => {
+                setSortKey(key)
+                setSortOrder(order)
+              }}
+            />
+            </PopoverContent>
+          </Popover>
       </div>
-
-
-  
   
       <div className='flex flex-col items-center justify-center md:px-24 md:py-15'>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">

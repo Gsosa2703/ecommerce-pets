@@ -36,6 +36,7 @@ const basePics = [
 
 const generateWoofers = (service: keyof typeof baseBios, count: number): IWoofer[] => {
   return Array.from({ length: count }).map(() => ({
+    id: faker.string.uuid(),
     name: faker.person.fullName(),
     bio: baseBios[service],
     tags: baseTags[service],
