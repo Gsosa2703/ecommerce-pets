@@ -1,4 +1,13 @@
-export const woofers = [
+export interface IWoofer {
+  name: string;
+  bio: string;
+  tags: string[];
+  profilePic: string;
+  starRating: number;
+  numberOfReviews: number;
+}
+
+export const woofers: IWoofer[] = [
    {
     name: "Dr. Emily Carter",
     bio: "Board-certified veterinarian with 10 years of experience caring for both small and large animals. Passionate about preventative care and skilled in emergency treatment.",
@@ -47,5 +56,4 @@ export const woofers = [
     starRating: 4.9,
     numberOfReviews: 30
   },
-
 ]

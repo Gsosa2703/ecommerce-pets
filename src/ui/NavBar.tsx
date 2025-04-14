@@ -42,7 +42,7 @@ export default function NavBar() {
           <div className="flex items-center w-full h-16">
             {/* Left: Logo */}
             <Link href="/">
-              <Image src="/woof-logo.png" alt="Logo" width={250} height={200} className="h-8" />
+              <Image src="/woof-logo.png"  alt="Logo" width={250} height={45} className="logo" />
             </Link>
 
             {/* Desktop Links */}

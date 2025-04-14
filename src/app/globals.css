@@ -142,3 +142,11 @@ img{
   background-color: var(--bg-gray-237) ;
   width: 100%;
 }
+
+img.logo{
+height: 45px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
