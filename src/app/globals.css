@@ -150,3 +150,31 @@ height: 45px;
 html {
   scroll-behavior: smooth;
 }
+
+.pawprints-bg {
+  background-image: url("/banner-profile.png");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover
+}
+
+.badge-profile-woofer svg {
+  width: 20px;
+  height: 20px;
+}
+
+.tab-about img{
+  width: 30px;
+  height: 28px;
+  }
+
+.swiper {
+  padding: 0;
+}
+.gallery-profile  .swiper-wrapper{
+  width: 250px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Creates 2 equal columns */
+  gap: 16px; /* Adjust spacing between columns as needed */
+}
+  

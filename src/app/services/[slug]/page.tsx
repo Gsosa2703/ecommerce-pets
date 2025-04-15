@@ -26,6 +26,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/outline'
+import Link from 'next/link'
 
 const ITEMS_PER_PAGE = 9
 
@@ -112,8 +113,8 @@ export default function Service({ params }: { params: Promise<{ slug: string }> 
       <div className='flex flex-col items-center justify-center md:px-24 md:py-15'>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {paginatedWoofers.map((woofer, index) => (
+                      <Link   key={index} href={`/woofers/${woofer.uid}`} >
                           <div
-                            key={index}
                             className="flex flex-col m-2 px-5 xl:px-10
                             bg-cover bg-center bg-no-repeat relative rounded-xl max-w-[441px]"  style={{
                               backgroundImage: `url(${woofer.profilePic})`,
@@ -143,6 +144,7 @@ export default function Service({ params }: { params: Promise<{ slug: string }> 
                                   </div>
                             </div>
                           </div>
+                          </Link>
           ))}
 
         </div>

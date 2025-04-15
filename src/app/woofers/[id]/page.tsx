@@ -1,8 +1,22 @@
+'use client'
 
+import Header from '@/ui/WooferProfile/Header'
 
-export default function WoofersPage(){
+import { woofers } from '@/lib/servicePage'
+import React from 'react'
+import { IWoofer } from '@/lib/woofers'
+import TabsProfile from '@/ui/WooferProfile/Tabs'
+export default function WoofersPage({ params }: { params: Promise<{ id: string }> }){
+   const { id } = React.use(params)
+   
+    const woofer: IWoofer = woofers[id] ?? {}
+ 
  return (
-  <h1>Woofer PAGE </h1>
+  <div className='bg-[#fbf8f3]'>
+     <Header woofer={woofer} />
+     <TabsProfile woofer={woofer} />
+  </div>
+
  )
 
 }
