@@ -22,7 +22,8 @@ export interface IWoofer {
   bioProfile?: string,
   achievements?:string[],
   reviews?: IReview[],
-  gallery?: string[]
+  gallery?: string[],
+  isVerified?: boolean
 }
 
 export const woofers: IWoofer[] = [

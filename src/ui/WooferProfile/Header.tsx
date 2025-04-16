@@ -18,7 +18,7 @@ export default function WooferProfileHeader({woofer}: {woofer: IWoofer}) {
       <div className=" pawprints-bg h-[200px] md:h-[300px] lg:h-[200px] xl:h-[250px]">
 
       </div>
-      <div className="mx-auto max-w-6xl px-4 py-8 mt-[-120px]">
+      <div className="mx-auto max-w-6xl px-4 py-8 mt-[-160px]">
         {/* White card with shadow, fully responsive layout */}
         <div className="bg-white rounded-lg shadow-lg shadow-orange-100 p-6 flex flex-col gap-4 md:flex-row md:justify-between">
           {/* Left Column: avatar + info */}

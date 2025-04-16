@@ -5,20 +5,19 @@ import Img from 'next/image'
 import {HomeIcon, AcademicCapIcon, ScissorsIcon, SparklesIcon, IdentificationIcon } from '@heroicons/react/24/outline'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { StarIcon } from '@heroicons/react/24/outline';
-import Gallery from "./Gallery"
+import Badges from "./Badges"
 
 
 export default function TabsProfile({woofer}: {woofer: IWoofer}) {
   return (
-    <section className="w-full max-w-5xl mx-auto mt-10">
+    <section className="w-full">
      <Tabs defaultValue="about" orientation="horizontal">
        <TabsList className="w-full bg-[#f7f0e4] p-3">
          <TabsTrigger value="about" className="text-lg p-3 cursor-pointer">About</TabsTrigger>
          <TabsTrigger value="reviews" className="text-lg p-3 cursor-pointer">Reviews</TabsTrigger>
-         <TabsTrigger value="gallery" className="text-lg p-3 cursor-pointer">Gallery</TabsTrigger>
        </TabsList>
-       <TabsContent value="about" className="bg-white w-full p-5 rounded-lg shadow-lg shadow-gray-200 mt-2 border border-gray-200">
-         <div className="tab-about">
+       <TabsContent value="about" className="">
+         <div className="tab-about bg-white w-full p-5 rounded-lg shadow-lg shadow-gray-200 mt-2 border border-gray-200">
           <div className="flex flex-col pb-5">
             <div className="flex items-baseline gap-3 pb-3">
              <Img src="/paw-icon.png" alt="paw orange icon"  height={100} width={100} className="w-[30px] h-[10px]" />
@@ -57,6 +56,7 @@ export default function TabsProfile({woofer}: {woofer: IWoofer}) {
              </div>         
              </div>
          </div>
+         <Badges />
        </TabsContent>
        <TabsContent value="reviews">
         <div className="pt-4">
@@ -92,15 +92,6 @@ export default function TabsProfile({woofer}: {woofer: IWoofer}) {
                   </div>
                  ))}
                </div>
-
-        </div>
-       </TabsContent>
-       <TabsContent value="gallery">
-        <div className="pt-4">
-                <h3 className="text-lg font-medium">Pet Gallery </h3>
-                <h4 className="text-base text-gray-400">Photos from {woofer.name}&apos;s pet care adventures</h4>
-
-                <Gallery gallery={woofer.gallery!} />
 
         </div>
        </TabsContent>

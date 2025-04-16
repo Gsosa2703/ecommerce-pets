@@ -178,3 +178,19 @@ html {
   gap: 16px; /* Adjust spacing between columns as needed */
 }
   
+[data-slot="tabs-content"][data-state="inactive"] {
+  display: block !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 500ms ease-in-out !important;
+}
+
+[data-slot="tabs-content"][data-state="active"] {
+  display: block !important;
+  opacity: 1;
+  transition: opacity 500ms ease-in-out !important;
+}
+
+.button-booking{
+  height: auto;
+}

@@ -54,7 +54,7 @@ export function DatePickerWithRange({
           <Button
             id="date"
             variant="outline"
-            className={cn("w-[300px] justify-start text-left font-normal", !date && "text-muted-foreground")}
+            className={cn("w-[300px] justify-start text-left", !date && "text-muted-foreground")}
           >
             <CalendarIcon className="mr-2" />
             {label}
@@ -68,6 +68,7 @@ export function DatePickerWithRange({
             selected={date}
             onSelect={setDate}
             numberOfMonths={2}
+            className="text-base"
           />
         </PopoverContent>
       </Popover>

@@ -5,23 +5,22 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
-import { DatePickerWithRange } from '@/components/ui/date-picker-range' // Adjust this import based on your date picker component
+import { DatePickerWithRange } from '@/components/ui/date-picker-range'
 import { DateRange } from "react-day-picker"
 import { Separator } from "@/components/ui/separator"
 
 type FilterBarProps = {
-  onSearch: (searchText: string) => void
   onToggleVerified: (checked: boolean) => void
-  onDateRangeSelect: (dateRange: DateRange | undefined) => void
+  onSubmitFilterBar: (searchText: string, dateRange: DateRange | null) => void
 }
 
 export function FilterBar({
-  onSearch,
   onToggleVerified,
-  onDateRangeSelect,
+  onSubmitFilterBar,
 }: FilterBarProps) {
   const [searchText, setSearchText] = useState("")
   const [checked, setChecked] = useState(false)
+  const [dataRange, setDataRange] = useState<DateRange | null>(null)
 
   return (
    <section className="bg-white rounded-lg md:rounded-full px-6 py-1 self-center"> 
@@ -59,7 +58,10 @@ export function FilterBar({
            {/* Availability Date */}
            <div className="flex flex-col max-w-xs">
              <Label className="pb-2" >Availability Range</Label>
-             <DatePickerWithRange onSelect={onDateRangeSelect} />
+             <DatePickerWithRange onSelect={(date) => { 
+              const d = date || null
+                return setDataRange(d) 
+              }}/>
            </div>
            
 
@@ -67,7 +69,7 @@ export function FilterBar({
            <div className="">
              <Button
                onClick={() => {
-                 onSearch(searchText)
+                 onSubmitFilterBar(searchText, dataRange)
                }}
                className="w-full bg-orange-400 hover:bg-orange-500 cursor-pointer rounded-full py-5 px-15 font-bold text-lg"
              >

@@ -1,63 +1,46 @@
+'use client'
 import React, { useState } from 'react';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-import type { Swiper as SwiperInstance } from 'swiper'; // <-- Import the type here
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
-import 'swiper/css/thumbs';
 
 import Image from 'next/image'
 // import required modules
-import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
 export default function Gallery({gallery}: {gallery: string[]}) {
-  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperInstance | null>(null);
+ 
+    const [selectedImage, setSelectedImage] = useState(gallery[0])
 
-  return (
-    <>
-    <div className='flex flex-col md:flex-row justify-center items-center pt-4'>
-
-       <Swiper
-           style={{
-             '--swiper-navigation-color': '#fff',
-             '--swiper-pagination-color': '#fff',
-           } as React.CSSProperties}
-           navigation={false}
-           thumbs={{ swiper: thumbsSwiper }}
-           modules={[FreeMode, Navigation, Thumbs]}
-           slidesPerView={1}
-           className="mySwiper2 max-w-xl"
-         >
-          {gallery.map((img, i) => (
-            <SwiperSlide key={i}>
-                <Image src={img} alt='image' className=" rounded-lg w-[320px] md:w-[550px]" width={500} height={500} />
-            </SwiperSlide>
-
+    // Up to 4 images for thumbnails (change logic if you want more)
+    const thumbnailImages = gallery.slice(0, 5).slice(1)
+  
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-2 overflow-hidden md:px-15">
+        {/* Main Image (left side on md+ screens) */}
+        <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px]">
+          <Image
+            src={selectedImage}
+            alt="Main Hostel Image"
+            fill
+            className="object-cover rounded-md"
+          />
+        </div>
+  
+        {/* Thumbnails (right side on md+ screens) */}
+        <div className="grid grid-cols-2 grid-rows-2 gap-2 min-h-[300px]">
+          {thumbnailImages.map((img, index) => (
+            <button
+              key={index}
+              type="button"
+              onClick={() => setSelectedImage(img)}
+              className="relative h-[140px] md:h-auto border border-transparent focus:outline-none focus:ring-2 focus:ring-orange-400 rounded-md hover:border-orange-400 transition"
+            >
+              <Image
+                src={img}
+                alt={`Thumbnail ${index + 1}`}
+                fill
+                className="cursor-pointer transition-transform duration-300 ease-in-out hover:scale-103 object-cover rounded-md"
+              />
+            </button>
           ))}
-
-         </Swiper>
-         <Swiper
-           onSwiper={(swiper) => setThumbsSwiper(swiper)}
-           spaceBetween={10}
-           slidesPerView={4}
-           freeMode={true}
-           watchSlidesProgress={true}
-           modules={[FreeMode, Navigation, Thumbs]}
-           className="gallery-profile"
-         >
-          {gallery.map((img, i) => (
-            <SwiperSlide key={i} className='w-[50%] cursor-pointer'>
-                <Image src={img} alt='image' className=' rounded-lg transition-transform duration-300 ease-in-out hover:scale-110' width={100} height={100} />
-            </SwiperSlide>
-
-          ))}
-         </Swiper>
-
-    </div>
-      
-    </>
-  );
+        </div>
+      </div>
+  )
 }

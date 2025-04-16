@@ -1,15 +1,28 @@
 
 import { faker } from '@faker-js/faker'
 import { IWoofer } from './woofers'
+export type ServiceType = {
+  banner: string,
+  title: string,
+  subtitle: string,
+  woofers: IWoofer[]
+}
 
-type ServicesMap = {
-    [key: string]: {
-        banner: string,
-        title: string,
-        subtitle: string,
-        woofers: IWoofer[]
-    }}
+export type ServicesMap = {
+    [key: string]: ServiceType
+  }
 
+    
+export interface IReview {
+  name: string;
+  profilePic: string;
+  rating: number;
+  review: string;
+  date: string;
+  pet: string;
+}
+
+  
 const baseBios = {
   grooming: "Expert groomer who ensures pets look their best with gentle care and styling expertise.",
   dogWalk: "Dedicated dog walker providing joyful and safe walks tailored to your pet's needs.",
@@ -40,6 +53,11 @@ const baseDates = [
   "about a year ago",
   "about a month ago",
  ]
+
+ const booleans = [true, false]
+
+
+export function feedLocalStorge (){
 
 const generateWoofers = (service: keyof typeof baseBios, count: number): IWoofer[] => {
   return Array.from({ length: count }).map(() => ({
@@ -76,18 +94,11 @@ const generateWoofers = (service: keyof typeof baseBios, count: number): IWoofer
       "/gallery/3.jpeg",
       "/gallery/3.webp",
       "/gallery/4.webp",
-    ]
+    ],
+    isVerified: booleans[faker.number.int({ min: 0, max: booleans.length -1 })] 
   }))
 }
 
-export interface IReview {
-  name: string;
-  profilePic: string;
-  rating: number;
-  review: string;
-  date: string;
-  pet: string;
-}
 
 const groomingWoofers = generateWoofers("grooming", 20)
 const dogWalkWoofers = generateWoofers("dogWalk", 20)
@@ -95,7 +106,7 @@ const trainingWoofers = generateWoofers("training", 20)
 const vetWoofers = generateWoofers("vet", 20)
 const petSittingWoofers = generateWoofers("petSitting", 20)
 
-export const services: ServicesMap = {
+const services: ServicesMap = {
   grooming: { 
     banner: '/services/grooming-service.webp' , 
     woofers: groomingWoofers,
@@ -147,4 +158,10 @@ allWoofers.map((woofer) => {
   return
 })
 
-export const woofers: Woofers = mappedWoofers
+if (typeof window !== "undefined") {
+  console.log('entra aqui')
+  window.localStorage.setItem('woofers', JSON.stringify(mappedWoofers))
+  window.localStorage.setItem('services', JSON.stringify(services))
+}
+
+}
