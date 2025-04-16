@@ -1,10 +1,10 @@
 
-import Hero from "@/ui/Hero";
-import WhyWoof from "@/ui/WhyWoof";
-import TopWoofers from "@/ui/TopWoofers";
-import Testimonals from "@/ui/Testimonials";
-import ShelterBanner from "@/ui/ShelterBanner";
-import BecomeAWoofer from "@/ui/BecomeAWoofer";
+import Hero from "@/ui/Home/Hero";
+import WhyWoof from "@/ui/Home/WhyWoof";
+import TopWoofers from "@/ui/Home/TopWoofers";
+import Testimonals from "@/ui/Home/Testimonials";
+import ShelterBanner from "@/ui/Home/ShelterBanner";
+import BecomeAWoofer from "@/ui/Home/BecomeAWoofer";
 
 export default function Home() {
   return (

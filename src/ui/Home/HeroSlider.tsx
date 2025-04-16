@@ -26,7 +26,7 @@ export default function ServicesSlider() {
         spaceBetween={16}
         slidesPerView={5}
         navigation
-        pagination={{ clickable: true }}
+        pagination={false}
         onClick={(swiper) => {
          setActiveIndex(swiper.clickedIndex)
         }}
@@ -41,7 +41,7 @@ export default function ServicesSlider() {
             slidesPerView: 5,
           },
         }}
-        className="bg-gray-100 rounded-tl-lg rounded-tr-lg"
+        className="hero-slider bg-gray-100 rounded-tl-lg rounded-tr-lg"
       >
         {petIcons.map((service, index) => (
           <SwiperSlide key={service.name} >

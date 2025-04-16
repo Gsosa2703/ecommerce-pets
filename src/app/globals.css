@@ -194,3 +194,7 @@ html {
 .button-booking, .become-a-woofer button{
   height: auto;
 }
+
+.hero-slider .swiper-button-prev, .hero-slider .swiper-button-next {
+  color: rgb(203, 203, 203)
+}

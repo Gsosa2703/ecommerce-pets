@@ -34,27 +34,27 @@ export default function NavBar() {
       {/* Top Banner */}
       <div className="hidden md:flex justify-center items-center bg-orange-200 px-4 py-3">
         <p className="text-sm font-semibold text-gray-700 text-center w-full">
-          Compare top-rated pet insurance plans – Save up to $373 each year – Get a custom quote
+          Your pet’s next best friend is just a click away — Browse services & book instantly.
         </p>
       </div>
 
       {/* Main Nav */}
       <nav className="bg-white shadow-md">
-        <div className="mx-auto px-4 py-2 flex items-center justify-between h-16">
+        <div className="mx-auto md:px-4 py-2 flex items-center justify-between h-16">
           {/* Left: Logo */}
           <Link href="/">
-            <Image src="/woof-logo.png" alt="Logo" width={250} height={45} className="logo" />
+            <Image src="/woof-logo.png" alt="Logo" width={250} height={45} className="w-[150px] md:w-[200px] logo" />
           </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center justify-between w-full">
             {/* Service Nav Items */}
-            <div className="flex items-center space-x-6">
+            <div className="flex items-center space-x-6 pl-3">
               {petIcons.map((pet) => (
                 <Link
                   key={pet.name}
                   href={`/services/${pet.slug}`}
-                  className="relative inline-block font-medium text-gray-800 whitespace-nowrap transition-colors duration-200 hover:text-green-500 group"
+                  className="relative text-lg inline-block font-medium text-gray-800 whitespace-nowrap transition-colors duration-200 hover:text-green-500 group"
                 >
                   {pet.name}
                   <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-green-500 transition-all duration-300 group-hover:w-full" />

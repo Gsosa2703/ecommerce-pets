@@ -8,7 +8,7 @@ export default function Testimonals() {
       <div className="w-full h-[136px] bg-cover bg-no-repeat"  style={{backgroundImage: 'url(/wave.svg)'}}></div>
         <div className="flex flex-col items-center testimonials-container pt-10 pb-10 px-10">
 
-          <h1 className="text-5xl font-bold text-green-400">Millions of 5-star services and counting</h1>
+          <h1 className="text-4xl md:text-5xl text-center font-bold text-green-400">Millions of 5-star services and counting</h1>
           <TestimonialsSlider options={{ slidesToScroll: 'auto' }} />
         </div>
 

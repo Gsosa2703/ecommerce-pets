@@ -29,7 +29,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   } = usePrevNextButtons(emblaApi)
 
   return (
-   <section className="embla_2 pt-20 px-6 mx-auto max-w-[1500px]">
+   <section className="embla_2 pt-10 md:pt-20 md:px-6 mx-auto max-w-[1500px]">
     <div className="embla__viewport overflow-hidden" ref={emblaRef}>
       <div className="embla__container flex touch-pan-y flex-nowrap">
         {woofers.map((woofer, index) => (

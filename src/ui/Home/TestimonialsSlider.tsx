@@ -39,7 +39,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         {testimonials.map((testimonial, index) => (
                       <div
                         key={index}
-                        className={`embla__slide flex flex-col items-center flex-none w-full md:w-1/3 px-10`}
+                        className={`embla__slide flex flex-col items-center flex-none w-full md:w-1/3 px-4 md:px-10`}
                       >
                         <div className="">
                           <Image
@@ -61,8 +61,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       </div>
     </div>
   
-    <div className="embla__controls">
-      <div className="embla__buttons flex justify-center items-center my-4">
+    <div className="embla__controls-testimonals md:grid pt-5 md:[pt-0]">
+      <div className="embla__buttons-testimonials hidden md:grid justify-center items-center my-4">
         <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
         <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
       </div>
@@ -72,7 +72,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           <DotButton
             key={index}
             onClick={() => onDotButtonClick(index)}
-            className={`embla__dot px-2 ${index === selectedIndex ? 'embla__dot--selected' : ''}`}
+            className={`embla__dot px-2  ${index === selectedIndex ? 'embla__dot--selected' : ''}`}
           />
         ))}
       </div>

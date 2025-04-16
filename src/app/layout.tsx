@@ -1,6 +1,5 @@
 'use client'
 import "./globals.css";
-import Navbar from "@/ui/NavBar";
 import { Montserrat } from "next/font/google";
 import Footer from "@/ui/Footer";
 
@@ -38,8 +37,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <title>My Ecommerce & Blog App</title>
       </head>
       <body>
-          
-          
           <SmoothScrolling>{children}</SmoothScrolling>
           <Footer />
       </body>
