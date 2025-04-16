@@ -1,4 +1,4 @@
-export default function WoofersLayout({
+export default function BecomeAWooferLayout({
  children,
 }: {
  children: React.ReactNode

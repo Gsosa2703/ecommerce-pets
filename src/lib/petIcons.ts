@@ -24,7 +24,7 @@ export const petIcons = [
    buttonLabel: "Book a Petsitter",
   },
   {
-   name: "Traning",
+   name: "Training",
    imageUrl: '/pet-icons/training.svg',
    slug: 'training',
    description:

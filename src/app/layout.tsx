@@ -19,6 +19,7 @@ const montserrat = Montserrat({
 
 import {feedLocalStorge} from '@/lib/servicePage'
 import { useEffect } from "react";
+import SmoothScrolling from "./SmoothScrooling";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 
@@ -37,8 +38,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <title>My Ecommerce & Blog App</title>
       </head>
       <body>
-          <Navbar />
-          <main>{children}</main>
+          
+          
+          <SmoothScrolling>{children}</SmoothScrolling>
           <Footer />
       </body>
     </html>

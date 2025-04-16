@@ -191,6 +191,6 @@ html {
   transition: opacity 500ms ease-in-out !important;
 }
 
-.button-booking{
+.button-booking, .become-a-woofer button{
   height: auto;
 }
