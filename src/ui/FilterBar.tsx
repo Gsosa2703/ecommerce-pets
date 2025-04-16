@@ -1,83 +1,97 @@
-"use client"
+'use client'
 
 import React, { useState } from "react"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
-import { DatePickerWithRange } from '@/components/ui/date-picker-range'
 import { DateRange } from "react-day-picker"
+import { DatePickerWithRange } from "@/components/ui/date-picker-range"
+import { Slider } from "@/components/ui/slider"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Separator } from "@/components/ui/separator"
 
 type FilterBarProps = {
   onToggleVerified: (checked: boolean) => void
-  onSubmitFilterBar: (searchText: string, dateRange: DateRange | null) => void
+  onSubmitFilterBar: (filters: {
+    dateRange: DateRange | null,
+    onlyVerified: boolean,
+    maxPrice: number,
+    starOnly: boolean
+  }) => void
 }
 
-export function FilterBar({
-  onToggleVerified,
-  onSubmitFilterBar,
-}: FilterBarProps) {
-  const [searchText, setSearchText] = useState("")
-  const [checked, setChecked] = useState(false)
-  const [dataRange, setDataRange] = useState<DateRange | null>(null)
+export function FilterBar({ onToggleVerified, onSubmitFilterBar }: FilterBarProps) {
+  const [onlyVerified, setOnlyVerified] = useState(false)
+  const [starOnly, setStarOnly] = useState(false)
+  const [price, setPrice] = useState([90]) // Default max price
+  const [dateRange, setDateRange] = useState<DateRange | null>(null)
 
   return (
-   <section className="bg-white rounded-lg md:rounded-full px-6 py-1 self-center"> 
-         <div className="flex w-full flex-col gap-4 md:flex-row md:items-center p-4">
-           {/* Search Input */}
-           <div className="flex flex-col w-full max-w-xs">
-             <Label className="pb-2" htmlFor="search">Search</Label>
-             <Input
-               id="search"
-               placeholder="Search Woofers..."
-               value={searchText}
-               onChange={(e) => setSearchText(e.target.value)}
-             />
-           </div>
+    <aside className="w-full max-w-[400px] p-6 bg-white rounded-xl shadow-md space-y-6">
+      <h2 className="text-xl font-bold text-gray-800">Filters</h2>
 
-            <div className="hidden md:block">
-              <Separator orientation="vertical" className="h-full" />
-            </div>
-            
-           {/* Verified Switch */}
-           <div className="flex items-center gap-2">
-             <Label>Only Verified</Label>
-             <Switch
-               checked={checked}
-               onCheckedChange={(val) => {
-                 setChecked(val as boolean)
-                 onToggleVerified(val as boolean)
-               }}
-             />
-           </div>
+      {/* Verified toggle */}
+      <div className="flex items-center justify-between">
+        <Label htmlFor="verified" className="text-lg">Verified Only</Label>
+        <Switch
+          id="verified"
+          checked={onlyVerified}
+          onCheckedChange={(val) => {
+            setOnlyVerified(val as boolean)
+            onToggleVerified(val as boolean)
+          }}
+        />
+      </div>
 
-           <Separator orientation={'vertical'} />
+      {/* Star Woofers */}
+      <div className="flex items-center justify-between">
+        <Label htmlFor="starred" className="text-lg" >Star Woofers</Label>
+        <Checkbox
+          id="starred"
+          checked={starOnly}
+          onCheckedChange={(checked) => setStarOnly(checked as boolean)}
+        />
+      </div>
 
+      <Separator />
 
-           {/* Availability Date */}
-           <div className="flex flex-col max-w-xs">
-             <Label className="pb-2" >Availability Range</Label>
-             <DatePickerWithRange onSelect={(date) => { 
-              const d = date || null
-                return setDataRange(d) 
-              }}/>
-           </div>
-           
+      {/* Price filter */}
+      <div className="space-y-2">
+        <Label htmlFor="price" className="text-lg">Max Price: ${price[0]}</Label>
+        <Slider
+          id="price"
+          defaultValue={price}
+          max={200}
+          step={5}
+          onValueChange={(val) => setPrice(val)}
+        />
+      </div>
 
-           {/* Submit/Apply Filters */}
-           <div className="">
-             <Button
-               onClick={() => {
-                 onSubmitFilterBar(searchText, dataRange)
-               }}
-               className="w-full bg-orange-400 hover:bg-orange-500 cursor-pointer rounded-full py-5 px-15 font-bold text-lg"
-             >
-               Search
-             </Button>
-           </div>
-         </div>   
-   </section>
-   
+      <Separator />
+
+      {/* Date range */}
+      <div className="space-y-2">
+        <Label htmlFor="range" className="text-lg">Availability Range</Label>
+        <DatePickerWithRange
+          onSelect={(d) => setDateRange(d || null)}
+        />
+      </div>
+
+      {/* Apply Filters */}
+      <div className="pt-4">
+        <button
+          onClick={() =>
+            onSubmitFilterBar({
+              dateRange,
+              onlyVerified,
+              maxPrice: price[0],
+              starOnly,
+            })
+          }
+          className="cursor-pointer w-full rounded-lg py-2 px-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold text-lg transition"
+        >
+          Apply Filters
+        </button>
+      </div>
+    </aside>
   )
 }

@@ -23,7 +23,10 @@ export interface IWoofer {
   achievements?:string[],
   reviews?: IReview[],
   gallery?: string[],
-  isVerified?: boolean
+  isVerified?: boolean,
+  price?: number,
+  badgesFilters?: string[],
+  isStar?: boolean
 }
 
 export const woofers: IWoofer[] = [

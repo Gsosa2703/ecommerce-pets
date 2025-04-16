@@ -54,6 +54,13 @@ const baseDates = [
   "about a month ago",
  ]
 
+ const badgesFilter = [
+  ["Caring", "Punctual", "Responsible"],
+  ["Funny", "Certified"],
+  ["Animal Lover", "Caring"],
+  ["Certified"],
+ ]
+
  const booleans = [true, false]
 
 
@@ -71,9 +78,11 @@ const generateWoofers = (service: keyof typeof baseBios, count: number): IWoofer
     avatarUrl: faker.image.avatar(),
     services: [service.charAt(0).toUpperCase() + service.slice(1)],
     location: `${faker.location.city()}, ${faker.location.state()}`,
+    badgesFilters: badgesFilter[faker.number.int({ min: 0, max: badgesFilter.length -1 })],
+    price: faker.number.int({ min: 20, max: 150 }),
     badges: [
       "Under 1 hour response", '1km near you',
-      "5+ years experience",],
+      "5+ years experience"],
     achievements: [
       "Certified Professional Pet Groomer",
       "Top Rated", "Featured in Best Pet Services 2023",
@@ -95,7 +104,8 @@ const generateWoofers = (service: keyof typeof baseBios, count: number): IWoofer
       "/gallery/3.webp",
       "/gallery/4.webp",
     ],
-    isVerified: booleans[faker.number.int({ min: 0, max: booleans.length -1 })] 
+    isVerified: booleans[faker.number.int({ min: 0, max: booleans.length -1 })],
+    isStar:  booleans[faker.number.int({ min: 0, max: booleans.length -1 })] 
   }))
 }
 

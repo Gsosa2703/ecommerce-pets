@@ -156,7 +156,7 @@ export default function BecomeWooferPage() {
   
 
   return (
-    <section className="bg-[#fbf8f3] become-a-woofer w-full p-5 pt-15">
+    <section className="bg-[#fbf8f3] become-a-woofer w-full p-5">
 
       <div className="mx-auto max-w-3xl">
       

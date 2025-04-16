@@ -70,21 +70,23 @@ export default function NavBar() {
               >
                 <MapPin className="mr-1" /> {currentLocation}
               </div>
-              {/* Auth Buttons styled as orange buttons */}
-              <Link
-                href="/signup"
-                className="bg-orange-400 hover:bg-orange-500 text-white font-bold px-4 py-2 rounded whitespace-nowrap transition-colors duration-200"
-              >
-                Login
-              </Link>
-              {/* Become a Woof! Button */}
+
+                {/* Become a Woof! Button */}
               <Link href="/become">
                 <div className="cursor-pointer">
                   <button className="cursor-pointer flex items-center gap-2 text-green-600 text-xl">
                     <Image src="/heart-save.png" alt="heart" width={30} height={30} className="mr-2" />
-                    Become a Woof!
+                    Become a Woofer!
                   </button>
                 </div>
+              </Link>
+
+              {/* Auth Buttons styled as orange buttons */}
+              <Link
+                href="/auth"
+                className="bg-orange-400 hover:bg-orange-500 text-white font-bold px-4 py-2 rounded whitespace-nowrap transition-colors duration-200"
+              >
+                Login
               </Link>
             </div>
           </div>
@@ -136,7 +138,7 @@ export default function NavBar() {
                   <MapPin className="mr-1" /> {currentLocation}
                 </div>
                 <Link
-                    href="/signup"
+                    href="/auth"
                     className="w-full bg-orange-400 hover:bg-orange-500 text-white font-bold px-4 py-2 rounded whitespace-nowrap transition-colors duration-200"
                   >
                 Login
@@ -147,7 +149,7 @@ export default function NavBar() {
                 <Link href="/become">
                   <Button className="cursor-pointer w-full flex items-center justify-center text-green-600 text-xl" variant={'outline'}>
                     <Image src="/heart-save.png" alt="heart" width={30} height={30} className="mr-2" />
-                    Become a Woof!
+                    Become a Woofer!
                   </Button>
                 </Link>
               </div>

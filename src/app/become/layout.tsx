@@ -3,5 +3,5 @@ export default function BecomeAWooferLayout({
 }: {
  children: React.ReactNode
 }) {
- return <section>{children}</section>
+ return <section className="md:h-screen bg-[#fbf8f3] flex justify-center items-center">{children}</section>
 }
