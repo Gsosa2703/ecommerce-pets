@@ -1,84 +1,114 @@
+"use client";
 
-"use client"
-import React from 'react'
-import { EmblaOptionsType } from 'embla-carousel'
+import React, { useEffect, useState } from "react";
+import { EmblaOptionsType } from "embla-carousel";
 import {
   PrevButton,
   NextButton,
-  usePrevNextButtons
-} from '@/embla-carousel/EmblaCarouselArrowsButtons'
-import useEmblaCarousel from 'embla-carousel-react';
-import { StarIcon } from '@heroicons/react/24/outline';
-import { Badge } from "@/components/ui/badge"
+  usePrevNextButtons,
+} from "@/embla-carousel/EmblaCarouselArrowsButtons";
+import useEmblaCarousel from "embla-carousel-react";
+import { StarIcon } from "@heroicons/react/24/outline";
+import { Badge } from "@/components/ui/badge";
+import "@/css/embla.css";
+import { IWoofer } from "@/lib/woofers";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
-import '@/css/embla.css'
-import { woofers } from '@/lib/woofers'
 type PropType = {
-  options?: EmblaOptionsType
-}
+  options?: EmblaOptionsType;
+};
 
-const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { options } = props
-  const [emblaRef, emblaApi] = useEmblaCarousel(options)
+const tagIcons: Record<string, string> = {
+  Grooming: "💖",
+  Professional: "⭐",
+  Gentle: "🐾",
+};
 
-  const {
-    prevBtnDisabled,
-    nextBtnDisabled,
-    onPrevButtonClick,
-    onNextButtonClick
-  } = usePrevNextButtons(emblaApi)
+const EmblaCarousel: React.FC<PropType> = ({ options }) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel(options);
+  const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } =
+    usePrevNextButtons(emblaApi);
+
+  const [woofers, setWoofers] = useState<IWoofer[]>([]);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("woofers");
+    if (stored) {
+      try {
+        const parsed: Record<string, IWoofer> = JSON.parse(stored);
+        const firstFive = Object.values(parsed).slice(0, 5);
+        setWoofers(firstFive);
+      } catch (error) {
+        console.error("Failed to parse woofers from localStorage", error);
+      }
+    }
+  }, []);
+
+  if (!woofers.length) {
+    return <p className="text-center py-10 text-gray-500">Loading featured woofers...</p>;
+  }
 
   return (
-   <section className="embla_2 pt-10 md:pt-20 md:px-6 mx-auto max-w-[1500px]">
-    <div className="embla__viewport overflow-hidden" ref={emblaRef}>
-      <div className="embla__container flex touch-pan-y flex-nowrap">
-        {woofers.map((woofer, index) => (
-                      <div
-                        key={index}
-                        className="embla__slide flex flex-col m-2 items-center max-w-full shrink-0 grow-0 pl-4 basis-full md:basis-6/12 lg:basis-4/12 px-10
-                        bg-cover bg-center bg-no-repeat relative rounded-xl"  style={{
-                         backgroundImage: `url(${woofer.profilePic})`,
-                       }}
-                      >
-                        
-                        <div className="absolute inset-0 bg-black opacity-30 rounded-xl"></div>
+    <section className="embla_2 pt-10 md:pt-20 md:px-6 mx-auto max-w-[1500px]">
+      <div className="embla__viewport overflow-hidden" ref={emblaRef}>
+        <div className="embla__container flex gap-4 md:gap-6 px-4 md:px-6">
+          {woofers.map((woofer, index) => (
+            <motion.div
+              whileHover={{ scale: 1.03, y: -4 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+              key={index}
+              className="embla__slide w-[280px] md:w-[320px] lg:w-[360px] flex-shrink-0"
+            >
+              <Link
+                href={`/woofers/${woofer.uid}`}
+                className="block h-[600px] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 bg-cover bg-center bg-no-repeat relative"
+                style={{
+                  backgroundImage: `url(${woofer.profilePic})`,
+                }}
+              >
+                {/* Shadow Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-0" />
 
-                        <div className="w-full flex flex-col text-white relative z-10 overflow-hidden rounded-regular h-[640px] max-w-[341px]">
-                              <div className='flex h-full w-full flex-col justify-end mb-10'>
-                                <div className='flex flex-col gap-y-4'>
-                                  <span className="text-3xl font-medium">{woofer.name}</span>
-                                  <div className="flex flex-wrap gap-2">
-                                      {woofer.tags.map((tag, index) => {
-                                      const icon = index === 1 ? '⭐' : index === 2 ? '🐾' : index === 3 ? '💖' : '💖'
-                                      return <Badge key={tag} variant="outline" className="bg-white text-md">{icon} {tag}</Badge>
-                                      } )}
-                                  </div>
-                                  <div className="w-full flex items-center justify-between">
-                                      <div className="flex items-center gap-2">
-                                        <StarIcon className="h-6 w-6 text-white fill-white" aria-hidden="true" />
-                                        <span className="text-lg font-medium">{woofer.starRating}</span>
-                                      </div>
-                                      <span className="text-lg underline">Read Reviews ({woofer.numberOfReviews})</span>
-                                  </div>
-                                </div>
-                              </div>
+                {/* Content */}
+                <div className="relative z-10 flex flex-col justify-end h-full p-6 text-white">
+                  <h2 className="text-2xl font-semibold">{woofer.name}</h2>
 
-                        </div>
-                      </div>
-        ))}
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {woofer.tags?.map((tag) => (
+                      <Badge key={tag} className="bg-white text-black text-sm font-medium">
+                        {tagIcons[tag] || "💬"} {tag}
+                      </Badge>
+                    ))}
+                  </div>
+
+                  {/* Rating */}
+                  <div className="flex items-center justify-between mt-4">
+                    <div className="flex items-center gap-2">
+                      <StarIcon className="h-5 w-5 text-white fill-white" />
+                      <span className="text-lg font-medium">{woofer.starRating}</span>
+                    </div>
+                    <span className="text-sm underline hover:text-white transition">
+                      Read Reviews ({woofer.numberOfReviews})
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
       </div>
-    </div>
-  
-    <div className="embla__controls">
-      <div className="embla__buttons flex justify-center items-center my-4">
-        <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
-        <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+
+      {/* Navigation Arrows */}
+      <div className="embla__controls mt-6">
+        <div className="embla__buttons flex justify-center items-center gap-3">
+          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
+          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+        </div>
       </div>
-    </div>
-  </section>
- 
-  )
-}
+    </section>
+  );
+};
 
-export default EmblaCarousel
-
+export default EmblaCarousel;

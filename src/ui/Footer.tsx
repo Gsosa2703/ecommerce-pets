@@ -27,10 +27,10 @@ export default function Footer() {
         <div className="flex-1">
           <h3 className="text-lg font-semibold text-orange-400">Services</h3>
           <ul className="mt-4 space-y-2">
-            {["Pet Walking", "Grooming", "Vet", "Training", "Overnight"].map((service) => (
+            {["Pet Walking", "Grooming", "Vet", "Training", "Pet Sitting"].map((service) => (
               <li key={service}>
                 <Link
-                  href={`/${service.toLowerCase().replace(" ", "-")}`}
+                  href={`/services/${service.toLowerCase().replace(" ", "-")}`}
                   className="hover:text-green-400 transition-colors duration-200"
                 >
                   {service}

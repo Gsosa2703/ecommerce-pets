@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function BecomeAWoofer() {
   return (
@@ -16,7 +17,9 @@ export default function BecomeAWoofer() {
          Want to earn money working with dogs? <br />
          Learn more about becoming a dog walker, sitter, or trainer in your city.
        </p>
-       <Button variant="outline" className="cursor-pointer bg-orange-500 text-white font-bold text-xl p-7 w-full md:w-[50%]">Become A Woofer!</Button>
+       <Link href={'/become'}>
+        <Button variant="outline" className="cursor-pointer bg-orange-500 hover:bg-orange-600 hover:text-white text-white font-bold text-xl p-7 w-full md:w-[50%]">Become A Woofer!</Button>
+       </Link>
      </div>
 
      <div>
