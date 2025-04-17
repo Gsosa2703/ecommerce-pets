@@ -34,9 +34,11 @@ export default function WoofersPage({ params }: { params: Promise<{ id: string }
  return (
   <div className='bg-[#fbf8f3] pb-30'>
    <Header woofer={woofer} />
-   <Gallery gallery={woofer.gallery!} />
+      
+      
+      <Gallery gallery={woofer.gallery!} />
 
-      <div className="pt-10 md:px-15 grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 relative">
+      <div className="pt-10 px-5 md:px-15 grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 relative">
         {/* Left side: Tabs and main content */}
         <div>
           <TabsProfile woofer={woofer} />

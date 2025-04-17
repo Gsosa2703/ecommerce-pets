@@ -101,7 +101,7 @@ export default function BookForm({ onDateRangeSelect }: FilterBarProps) {
           <BoltIcon className="mr-1 w-6 h-6" aria-hidden="true" />
           Select a Service
           </Label>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           <Button variant="outline" className="transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer" onClick={handleClickServiceButton} value="grooming" type="button">
             <ScissorsIcon className="mr-1" aria-hidden="true" />
             Grooming

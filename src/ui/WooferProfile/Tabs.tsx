@@ -71,11 +71,11 @@ export default function TabsProfile({woofer}: {woofer: IWoofer}) {
                         <AvatarFallback>{name?.[0] ?? "W"}</AvatarFallback>
                       </Avatar>
                       <div className="w-full flex flex-col gap-3">
-                        <div className="flex justify-between">
+                        <div className="flex flex-col md:flex-row justify-between">
                           <h4 className="text-lg font-medium">{review.name}</h4>
                           <p className="font-light text-sm text-gray-400">{review.date}</p>
                         </div>
-                        <div className="flex gap-3">
+                        <div className="flex flex-col md:flex-row gap-3">
                          <div className="flex items-center">
                            {Array.from({ length: review.rating }).map((_, i) => (
                               <StarIcon key={i} className="h-5 w-5 text-orange-400 fill-orange-400" aria-hidden="true" />

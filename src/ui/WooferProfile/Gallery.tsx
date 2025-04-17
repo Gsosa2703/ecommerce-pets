@@ -12,7 +12,7 @@ export default function Gallery({gallery}: {gallery: string[]}) {
     const thumbnailImages = gallery.slice(0, 5).slice(1)
   
     return (
-      <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-2 overflow-hidden md:px-15">
+      <div className=" px-5 md:px-15 grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-2 overflow-hidden md:px-15">
         {/* Main Image (left side on md+ screens) */}
         <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px]">
           <Image
