@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={montserrat.variable}>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <head>
-        <title>My Ecommerce & Blog App</title>
+      <title>Woof – Where Pet Lovers Meet Trusted Caregivers</title>
       </head>
       <body>
           <SmoothScrolling>{children}</SmoothScrolling>
