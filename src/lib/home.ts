@@ -38,7 +38,7 @@ export const reasons = [
 export const testimonials = [
   {
     name: "Carolyn Perez",
-    description: "I couldn't seem to find the time to walk my dog, with a 9 month old baby and a night shift schedule. With Wag!, I get to meet and talk to my walker before, during, and after the walk and am able to get my dog walked right away!",
+    description: "I couldn't seem to find the time to walk my dog, with a 9 month old baby and a night shift schedule. ",
     profilePic: "/testimonials/testimonial-1.webp",
   },
   {
