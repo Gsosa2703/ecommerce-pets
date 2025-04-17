@@ -67,7 +67,7 @@ export default function NavBar() {
             <div className="flex items-center space-x-6">
               {/* Current Location */}
               <div
-                className="flex items-center text-lg font-medium text-gray-800 transition-colors duration-200 hover:text-green-500 whitespace-nowrap"
+                className="flex items-center text-base font-medium text-gray-600 transition-colors duration-200 hover:text-orange-500 whitespace-nowrap"
               >
                 <MapPin className="mr-1" /> {currentLocation}
               </div>
@@ -75,10 +75,9 @@ export default function NavBar() {
                 {/* Become a Woof! Button */}
               <Link href="/become">
                 <div className="cursor-pointer">
-                  <button className="cursor-pointer flex items-center gap-2 text-green-600 text-xl">
-                    <Image src="/heart-save.png" alt="heart" width={30} height={30} className="mr-2" />
+                  <Button variant={'outline'} className="cursor-pointer flex items-center gap-2 text-green-600 hover:bg-green-400 hover:text-white text-xl">
                     Become a Woofer!
-                  </button>
+                  </Button>
                 </div>
               </Link>
 
