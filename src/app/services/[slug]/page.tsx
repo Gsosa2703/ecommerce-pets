@@ -171,8 +171,13 @@ export default function Service({ params }: { params: Promise<{ slug: string }> 
     <section className="w-full overflow-x-hidden pb-10">
 
       <div
-        style={{ backgroundPosition: "center bottom", backgroundImage: `url(${service.banner})` }}
-        className="w-full px-10 pt-5 md:px-30 md:pt-15 bg-cover bg-no-repeat relative flex flex-col h-[400px] md:h-[400px] lg:h-[300px] xl:h-[500px]"
+        className={`
+              banner-${slugModified}
+              w-full px-10 pt-15 md:pt-5 md:px-30 md:pt-15 bg-cover bg-no-repeat relative flex flex-col h-[400px] md:h-[400px] lg:h-[300px] xl:h-[500px]
+          `}
+
+          style={{ backgroundPosition: "center bottom", backgroundImage: `url(${service.banner})` }}
+
       >
         <div>
           <h1 className="text-white text-3xl md:text-5xl font-bold mb-4">{service.title}</h1>

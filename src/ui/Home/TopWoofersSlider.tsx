@@ -37,7 +37,7 @@ const EmblaCarousel: React.FC<PropType> = ({ options }) => {
     if (stored) {
       try {
         const parsed: Record<string, IWoofer> = JSON.parse(stored);
-        const firstFive = Object.values(parsed).slice(0, 7);
+        const firstFive = Object.values(parsed).slice(0, 6);
         setWoofers(firstFive);
       } catch (error) {
         console.error("Failed to parse woofers from localStorage", error);

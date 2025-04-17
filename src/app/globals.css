@@ -203,3 +203,21 @@ html {
   width: 20px;
   height: 20px;
 }
+
+@media screen and (max-width: 640px) {
+  .banner-petsitting{
+    background-image: url('/services/mobile3.jpg') !important;
+  }
+  .banner-dogwalk{
+    background-image: url('/services/mobile-walking.png') !important;
+  }
+  .banner-training{
+    background-image: url('/services/mobile5.jpg') !important;
+  }
+  .banner-vet{
+    background-image: url('/services/mobile4.jpg') !important;
+  }
+  .banner-grooming{
+    background-image: url('/services/mobile-2.png') !important;
+  }
+}
