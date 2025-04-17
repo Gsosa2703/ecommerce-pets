@@ -27,8 +27,12 @@ const tagIcons: Record<string, string> = {
 
 const EmblaCarousel: React.FC<PropType> = ({ options }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
-  const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } =
-    usePrevNextButtons(emblaApi);
+  const {
+    prevBtnDisabled,
+    nextBtnDisabled,
+    onPrevButtonClick,
+    onNextButtonClick,
+  } = usePrevNextButtons(emblaApi);
 
   const [woofers, setWoofers] = useState<IWoofer[]>([]);
 
@@ -46,13 +50,17 @@ const EmblaCarousel: React.FC<PropType> = ({ options }) => {
   }, []);
 
   if (!woofers.length) {
-    return <p className="text-center py-10 text-gray-500">Loading featured woofers...</p>;
+    return (
+      <p className="text-center py-10 text-gray-500">
+        Loading featured woofers...
+      </p>
+    );
   }
 
   return (
-    <section className="embla_2 pt-10 md:pt-20 md:px-6 mx-auto max-w-[1500px]">
-      <div className="embla__viewport overflow-hidden" ref={emblaRef}>
-        <div className="embla__container flex gap-4 md:gap-6 px-4 md:px-6 justify-center">
+    <section className="embla_2 pt-10 md:pt-20 md:px-6 mx-auto max-w-[1500px] overflow-x-visible">
+      <div className="embla__viewport overflow-visible" ref={emblaRef}>
+        <div className="embla__container flex gap-4 md:gap-6 px-4 md:px-6">
           {woofers.map((woofer, index) => (
             <motion.div
               whileHover={{ scale: 1.03, y: -4 }}
@@ -72,12 +80,17 @@ const EmblaCarousel: React.FC<PropType> = ({ options }) => {
 
                 {/* Content */}
                 <div className="relative z-10 flex flex-col justify-end h-full p-4 text-white">
-                  <h2 className="text-xl font-semibold leading-snug">{woofer.name}</h2>
+                  <h2 className="text-xl font-semibold leading-snug">
+                    {woofer.name}
+                  </h2>
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mt-2">
                     {woofer.tags?.map((tag) => (
-                      <Badge key={tag} className="bg-white text-black text-xs font-medium">
+                      <Badge
+                        key={tag}
+                        className="bg-white text-black text-xs font-medium"
+                      >
                         {tagIcons[tag] || "💬"} {tag}
                       </Badge>
                     ))}
@@ -87,7 +100,9 @@ const EmblaCarousel: React.FC<PropType> = ({ options }) => {
                   <div className="flex items-center justify-between mt-3">
                     <div className="flex items-center gap-2">
                       <StarIcon className="h-4 w-4 text-white fill-white" />
-                      <span className="text-sm font-medium">{woofer.starRating}</span>
+                      <span className="text-sm font-medium">
+                        {woofer.starRating}
+                      </span>
                     </div>
                     <span className="text-sm underline hover:text-white transition">
                       Read Reviews ({woofer.numberOfReviews})

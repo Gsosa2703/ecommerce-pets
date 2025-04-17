@@ -325,7 +325,7 @@ export default function Service({ params }: { params: Promise<{ slug: string }> 
                     >
                       {/* Imagen */}
                       <div className="h-40 bg-gradient-to-r from-green-100 to-orange-300 flex justify-center items-center">
-                        <Avatar className="w-28 h-28 border-4 border-white mt-12">
+                        <Avatar className="w-28 h-28 border-4 border-white mt-15">
                           {woofer.avatarUrl ? (
                             <AvatarImage src={woofer.avatarUrl} alt="Profile Photo" />
                           ) : (
