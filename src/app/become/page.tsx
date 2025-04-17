@@ -37,14 +37,8 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 
 export default function BecomeWooferPage() {
-  // --------------------
-  // Step state management
-  // --------------------
   const [currentStep, setCurrentStep] = useState(1);
 
-  // --------------------
-  // STEP 1: Personal Info
-  // --------------------
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -52,15 +46,9 @@ export default function BecomeWooferPage() {
   const [bio, setBio] = useState("");
   const [experienceYears, setExperienceYears] = useState("");
 
-  // --------------------
-  // STEP 2: Photo Uploads
-  // --------------------
   const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
   const [profilePhotoPreview, setProfilePhotoPreview] = useState<string | null>(null);
 
-  // --------------------
-  // STEP 3: Services & Terms
-  // --------------------
   const [services, setServices] = useState({
     grooming: false,
     groomingPrice: 0,
@@ -75,9 +63,6 @@ export default function BecomeWooferPage() {
   });
   const [agreedToTerms, setAgreedToTerms] = useState(false);
 
-  // --------------------
-  // Framer Motion variants
-  // --------------------
   const variants = {
     initial: { opacity: 0, x: 50 },
     animate: { opacity: 1, x: 0 },
@@ -106,7 +91,6 @@ export default function BecomeWooferPage() {
     checked: boolean | "indeterminate",
     serviceKey: string
   ) => {
-    // Convert "indeterminate" to a boolean if necessary
     const isChecked = checked === true;
     setServices((prev) => ({
       ...prev,
@@ -122,13 +106,9 @@ export default function BecomeWooferPage() {
     setServices((prev) => ({ ...prev, [priceField]: value }));
   };
 
-  // Step navigation
   const handleNext = () => setCurrentStep((prev) => prev + 1);
   const handleBack = () => setCurrentStep((prev) => prev - 1);
 
-  // --------------------
-  // Final Submission
-  // --------------------
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const payload = {
@@ -138,7 +118,7 @@ export default function BecomeWooferPage() {
       location,
       bio,
       experienceYears,
-      profilePhoto, // Real usage: handle file uploads
+      profilePhoto, 
       servicesOffered: {
         grooming: services.grooming ? services.groomingPrice : null,
         petSitting: services.petSitting ? services.petSittingPrice : null,
