@@ -37,17 +37,26 @@ const EmblaCarousel: React.FC<PropType> = ({ options }) => {
   const [woofers, setWoofers] = useState<IWoofer[]>([]);
 
   useEffect(() => {
-    const stored = localStorage.getItem("woofers");
-    if (stored) {
-      try {
-        const parsed: Record<string, IWoofer> = JSON.parse(stored);
-        const firstFive = Object.values(parsed).slice(0, 6);
-        setWoofers(firstFive);
-      } catch (error) {
-        console.error("Failed to parse woofers from localStorage", error);
+    const interval = setInterval(() => {
+      const stored = localStorage.getItem("woofers");
+      if (stored) {
+        try {
+          const parsed: Record<string, IWoofer> = JSON.parse(stored);
+          const firstFive = Object.values(parsed).slice(0, 6);
+          if (firstFive.length > 0) {
+            setWoofers(firstFive);
+            clearInterval(interval); // 👈 Ya tenemos los datos, detenemos el polling
+          }
+        } catch (error) {
+          console.error("Failed to parse woofers from localStorage", error);
+          clearInterval(interval); // 👈 No seguimos si hay error
+        }
       }
-    }
+    }, 1000); // revisa cada 1 segundo
+  
+    return () => clearInterval(interval);
   }, []);
+  
 
   if (!woofers.length) {
     return (
