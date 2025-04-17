@@ -26,7 +26,7 @@ export function FilterBar({ onToggleVerified, onSubmitFilterBar }: FilterBarProp
   const [dateRange, setDateRange] = useState<DateRange | null>(null)
 
   return (
-    <aside className="w-full max-w-[400px] p-6 bg-white rounded-xl shadow-md space-y-6">
+    <aside className="w-full max-w-[350px] p-6 bg-white rounded-xl shadow-md space-y-6">
       <h2 className="text-xl font-bold text-gray-800">Filters</h2>
 
       {/* Verified toggle */}
