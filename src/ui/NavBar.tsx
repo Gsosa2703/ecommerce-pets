@@ -8,6 +8,7 @@ import { petIcons } from "@/lib/petIcons";
 import { MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLenis } from 'lenis/react'
+import { AnimatePresence, motion } from "framer-motion";
 
 
 export default function NavBar() {
@@ -114,48 +115,49 @@ export default function NavBar() {
         </div>
 
         {/* Mobile Menu */}
+        <AnimatePresence>
         {mobileMenuOpen && (
-          <div className="md:hidden">
-            <div className="space-y-1 px-2 pt-2 pb-3 bg-white border-t">
-              {/* Services */}
-              <p className="px-3 py-2 font-medium text-gray-800">Services</p>
+          <motion.div
+            key="mobile-menu"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            className="md:hidden overflow-hidden bg-white border-t"
+          >
+            <div className="space-y-1 px-2 pt-2 pb-3">
+              <p className="px-3 py-2 font-medium text-gray-800 text-lg">Services</p>
               <div className="pl-6 space-y-1">
                 {petIcons.map((pet) => (
                   <Link
                     key={pet.name}
                     href={`/services/${pet.slug}`}
-                    className="block px-3 py-2 text-lg font-medium text-gray-800 transition-colors duration-200 hover:bg-gray-100 rounded whitespace-nowrap"
+                    className="block px-3 py-2 text-base font-medium text-gray-800 transition-colors duration-200 hover:bg-gray-100 rounded"
                   >
                     {pet.name}
                   </Link>
                 ))}
               </div>
-              {/* Current Location */}
-              <div className="px-3 py-2">
-                <div
-                  className="pb-5 flex items-center text-lg font-medium text-gray-800 transition-colors duration-200 hover:text-green-500 whitespace-nowrap"
-                >
-                  <MapPin className="mr-1" /> {currentLocation}
-                </div>
+
+              <div className="flex gap-3 justify-center">
                 <Link
-                    href="/auth"
-                    className="w-full bg-orange-400 hover:bg-orange-500 text-white font-bold px-4 py-2 rounded whitespace-nowrap transition-colors duration-200"
-                  >
-                Login
-              </Link>
-              </div>
-              {/* Become a Woof! Button */}
-              <div className="mt-2 px-3">
+                  href="/auth"
+                >
+                  <Button className="w-full text-center px-4 py-2 bg-orange-400 text-white text-xl" variant="outline">
+                    Login
+                  </Button>
+                </Link>
                 <Link href="/become">
-                  <Button className="cursor-pointer w-full flex items-center justify-center text-green-600 text-xl" variant={'outline'}>
-                    <Image src="/heart-save.png" alt="heart" width={30} height={30} className="mr-2" />
+                  <Button className="w-full text-center px-4 py-2 text-green-600 text-xl" variant="outline">
                     Become a Woofer!
                   </Button>
                 </Link>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
+      </AnimatePresence>
+
       </nav>
     </section>
   );

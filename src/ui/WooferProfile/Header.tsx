@@ -10,6 +10,7 @@ import { MapPin, Heart, MessageSquare, Phone } from "lucide-react";
 import { IWoofer } from "@/lib/woofers";
 
 import {ClockIcon, CalendarIcon, HomeIcon, AcademicCapIcon, ScissorsIcon, SparklesIcon, IdentificationIcon, StarIcon } from '@heroicons/react/24/outline'
+import { motion } from "framer-motion";
 export default function WooferProfileHeader({woofer}: {woofer: IWoofer}) {
  const { name, avatarUrl, location, starRating, numberOfReviews, services, badges } = woofer;
   return (
@@ -20,91 +21,94 @@ export default function WooferProfileHeader({woofer}: {woofer: IWoofer}) {
       </div>
       <div className="mx-auto max-w-6xl px-4 py-8 mt-[-160px]">
         {/* White card with shadow, fully responsive layout */}
-        <div className="bg-white rounded-lg shadow-lg shadow-orange-100 p-6 flex flex-col gap-4 md:flex-row md:justify-between">
-          {/* Left Column: avatar + info */}
-          <div className="flex flex-col gap-4">
-            {/* Main profile row: avatar + user info */}
-            <div className="mt-2 flex flex-col gap-4">
-              {/* Avatar */}
-              <Avatar className="h-30 w-30 border-5 border-white shadow-lg">
-                <AvatarImage src={avatarUrl} alt={name} />
-                <AvatarFallback>{name?.[0] ?? "W"}</AvatarFallback>
-              </Avatar>
+        <div className="bg-white rounded-lg shadow-lg shadow-orange-100 p-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          {/* Column 1: Avatar + Info (col-span-3) */}
+          <div className="md:col-span-3 flex flex-col items-center md:items-start gap-4">
+            <Avatar className="h-28 w-28 border-4 border-white shadow-lg">
+              <AvatarImage src={avatarUrl} alt={name} />
+              <AvatarFallback>{name?.[0] ?? "W"}</AvatarFallback>
+            </Avatar>
 
-              {/* Name, location, rating */}
-              <div className="flex flex-col">
-                <h1 className="text-3xl font-semibold text-gray-900 leading-tight">
-                  {name}
-                </h1>
+            <div className="text-center md:text-left">
+              <h1 className="text-2xl font-semibold text-gray-900">{name}</h1>
+              <div className="mt-1 flex items-center justify-center md:justify-start gap-1 text-gray-500">
+                <MapPin className="h-4 w-4" /> {location}
+              </div>
 
-                <div className="mt-1 flex items-center gap-1 text-lg text-gray-500">
-                  <MapPin className="h-4 w-4" aria-hidden="true" />
-                  <span>{location}</span>
-                </div>
-
-                <div className="mt-1 flex items-center gap-2">
-                  <div className="flex items-center gap-1 text-yellow-500">
-                    <StarIcon  className="h-6 w-6 text-orange-400 fill-orange-400" aria-hidden="true" />
-                    <span className="text-gray-800 font-semibold text-lg">
-                      {starRating.toFixed(1)}
-                    </span>
-                  </div>
-                  <span className="text-gray-500 text-lg">
-                    ({numberOfReviews} reviews)
-                  </span>
-                </div>
+              <div className="mt-1 flex items-center justify-center md:justify-start gap-2">
+                <StarIcon className="h-5 w-5 text-orange-400 fill-orange-400" />
+                <span className="text-gray-800 font-semibold">{starRating.toFixed(1)}</span>
+                <span className="text-gray-500">({numberOfReviews} reviews)</span>
               </div>
             </div>
           </div>
 
-          <div>
-            {/* Services row */}
-           <div className="flex flex-wrap items-center gap-2font-medium text-gray-600 pb-5">
-              {services!.map((svc, i) => (
-                <Badge key={i} variant="outline" className="badge-profile-woofer text-lg border-none">
-                  {svc === "Grooming" && <ScissorsIcon className="mr-1" aria-hidden="true" />}
-                  {svc === "DogWalk" && <SparklesIcon className="mr-1" aria-hidden="true" />}
-                  {svc === "Training" && <AcademicCapIcon className="mr-1" aria-hidden="true" />}
-                  {svc === "Vet" && <IdentificationIcon className="mr-1" aria-hidden="true" />}
-                  {svc === "PetSitting" && <HomeIcon className="mr-1" aria-hidden="true" />}
-
+          {/* Column 2: Services, Badges, Star Woofer Info (col-span-6) */}
+          <div className="md:col-span-6 flex flex-col gap-4">
+            {/* Services */}
+            <div className="flex flex-wrap gap-2">
+              {services?.map((svc, i) => (
+                <Badge key={i} variant="outline" className="text-base border-none">
+                  {svc === "Grooming" && <ScissorsIcon className="mr-1 h-4 w-4" />}
+                  {svc === "DogWalk" && <SparklesIcon className="mr-1 h-4 w-4" />}
+                  {svc === "Training" && <AcademicCapIcon className="mr-1 h-4 w-4" />}
+                  {svc === "Vet" && <IdentificationIcon className="mr-1 h-4 w-4" />}
+                  {svc === "PetSitting" && <HomeIcon className="mr-1 h-4 w-4" />}
                   {svc}
                 </Badge>
               ))}
             </div>
 
-            {/* Another row for special badges */}
-            <div className="flex flex-wrap items-center gap-2 font-medium text-gray-500">
-              {badges!.map((badge, i) => (
-                <Badge key={i} variant="outline" className="badge-profile-woofer bg-[#fbf8f3] rounded-full text-base border-1">
-                  {badge === "Under 1 hour response" && <ClockIcon className="mr-1" aria-hidden="true" />}
-                  {badge === "1km near you" && <HomeIcon className="mr-1" aria-hidden="true" />}
-                  {badge === "5+ years experience" && <CalendarIcon className="mr-1" aria-hidden="true" />}
+            {/* Badges */}
+            <div className="flex flex-wrap gap-2">
+              {badges?.map((badge, i) => (
+                <Badge key={i} variant="outline" className="bg-[#fbf8f3] rounded-full text-sm">
+                  {badge === "Under 1 hour response" && <ClockIcon className="mr-1 h-4 w-4" />}
+                  {badge === "1km near you" && <HomeIcon className="mr-1 h-4 w-4" />}
+                  {badge === "5+ years experience" && <CalendarIcon className="mr-1 h-4 w-4" />}
                   {badge}
                 </Badge>
               ))}
             </div>
+
+            {/* Star Woofer */}
+
+
+            
+            {woofer.isStar && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className="bg-yellow-50 border border-yellow-300 rounded-xl px-4 py-3 flex items-center gap-3 shadow-sm w-fit"
+                  >
+                    <StarIcon className="w-6 h-6 text-yellow-500 fill-yellow-500" />
+                    <div>
+                      <h4 className="text-yellow-700 font-semibold text-base">Star Woofer</h4>
+                      <p className="text-sm text-yellow-700">
+                        Recognized for outstanding feedback, loyalty, and care.
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
           </div>
 
-          {/* Right Column: Buttons (Message, Contact), etc. */}
-          <div className="flex flex-col items-stretch gap-2 md:items-end">
-            <Button className="w-full p-5 rounded-lg md:w-auto flex items-center gap-2 bg-green-400 hover:bg-green-500 cursor-pointer">
-              <MessageSquare className="h-4 w-4" aria-hidden="true" />
+          {/* Column 3: Action Buttons (col-span-3) */}
+          <div className="md:col-span-3 flex flex-col items-stretch gap-3">
+            <Button className="w-full py-4 text-base bg-green-400 hover:bg-green-500 flex items-center justify-center gap-2">
+              <MessageSquare className="h-5 w-5" />
               Message
             </Button>
-            <Button variant="outline" className="w-full p-5 rounded-lg md:w-auto flex items-center gap-2 cursor-pointer">
-              <Phone className="h-4 w-4" aria-hidden="true" />
+            <Button variant="outline" className="w-full py-4 text-base flex items-center justify-center gap-2">
+              <Phone className="h-5 w-5" />
               Contact
             </Button>
-            {/* Possibly a favorite button */}
-            <button
-              className="mt-2 text-gray-500 hover:text-red-500"
-              aria-label="Favorite"
-            >
-              <Heart className="h-6 w-6 cursor-pointer hover:fill-red-600" aria-hidden="true" />
+            <button className="cursor-pointer mt-1 text-gray-400 hover:text-red-500 mx-auto" aria-label="Favorite">
+              <Heart className="h-6 w-6 hover:fill-red-500 transition-all" />
             </button>
           </div>
         </div>
+
       </div>
     </section>
   );
