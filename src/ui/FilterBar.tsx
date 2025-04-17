@@ -8,6 +8,8 @@ import { DatePickerWithRange } from "@/components/ui/date-picker-range"
 import { Slider } from "@/components/ui/slider"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Separator } from "@/components/ui/separator"
+import { ShieldCheckIcon } from '@heroicons/react/24/solid'
+import Image from "next/image";
 
 type FilterBarProps = {
   onToggleVerified: (checked: boolean) => void
@@ -31,7 +33,9 @@ export function FilterBar({ onToggleVerified, onSubmitFilterBar }: FilterBarProp
 
       {/* Verified toggle */}
       <div className="flex items-center justify-between">
-        <Label htmlFor="verified" className="text-lg">Verified Only</Label>
+        <Label htmlFor="verified" className="text-lg">Verified Only                               
+          <ShieldCheckIcon className="w-4 h-4 text-green-600" />
+        </Label>
         <Switch
           id="verified"
           checked={onlyVerified}
@@ -44,7 +48,10 @@ export function FilterBar({ onToggleVerified, onSubmitFilterBar }: FilterBarProp
 
       {/* Star Woofers */}
       <div className="flex items-center justify-between">
-        <Label htmlFor="starred" className="text-lg" >Star Woofers</Label>
+        <Label htmlFor="starred" className="text-lg" >
+          Star Woofers
+          <Image src="/heart-star.png" alt="star woofer" width={100} height={100} className="w-4 h-4" />
+          </Label>
         <Checkbox
           id="starred"
           checked={starOnly}

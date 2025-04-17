@@ -41,15 +41,15 @@ export default function NavBar() {
 
       {/* Main Nav */}
       <nav className="bg-white shadow-md">
-        <div className="mx-auto md:px-4 py-2 flex items-center justify-between h-16">
+        <div className="mx-auto md:px-4 py-2 flex items-center justify-between">
           {/* Left: Logo */}
           <Link href="/">
             <Image src="/woof-logo.png" alt="Logo" width={250} height={45} className="w-[150px] md:w-[200px] logo" />
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center justify-between w-full">
-            {/* Service Nav Items */}
+          <div className="hidden md:flex items-center justify-between flex-wrap gap-y-2 w-full">
+          {/* Service Nav Items */}
             <div className="flex items-center space-x-6 pl-3">
               {petIcons.map((pet) => (
                 <Link
@@ -64,10 +64,10 @@ export default function NavBar() {
             </div>
 
             {/* Right Nav Items */}
-            <div className="flex items-center space-x-6">
+            <div className="flex items-center space-x-6 flex">
               {/* Current Location */}
               <div
-                className="flex items-center text-base font-medium text-gray-600 transition-colors duration-200 hover:text-orange-500 whitespace-nowrap"
+                className="hidden xl:flex items-center text-base font-medium text-gray-600 transition-colors duration-200 hover:text-orange-500 whitespace-nowrap"
               >
                 <MapPin className="mr-1" /> {currentLocation}
               </div>

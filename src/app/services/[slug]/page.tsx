@@ -30,6 +30,7 @@ import { FaRegLaughWink, FaUserShield } from 'react-icons/fa'
 import { PawPrintIcon } from 'lucide-react'
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
 import { DateRange } from 'react-day-picker'
+import Image from "next/image";
 
 
 const ITEMS_PER_PAGE = 9
@@ -181,7 +182,7 @@ export default function Service({ params }: { params: Promise<{ slug: string }> 
 
     <div className='px-10 pt-10'>
       <div className='flex flex-col md:flex-row justify-between items-center'>
-        <h2 className='text-lg font-semibold'>{service.woofers.length} Woofers Available</h2>
+        <h2 className='text-lg font-semibold'>{filteredWoofers.length} Woofers Available</h2>
         <div className='flex gap-3 flex-col md:flex-row items-center'>
           <SortingBar onChange={handleSortChange} />
           <div className='flex gap-3'>
@@ -280,7 +281,33 @@ export default function Service({ params }: { params: Promise<{ slug: string }> 
           <div className="flex-1">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               <AnimatePresence>
-                {filteredWoofers.map((woofer) => (
+                
+          {filteredWoofers.length === 0 ? (
+            <div className="col-span-full flex flex-col items-center justify-center py-16 text-center">
+              <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                No woofers found
+              </h3>
+              <p className="text-gray-500 max-w-md">
+                Try adjusting your filters or&nbsp;
+                <button
+                  onClick={() => {
+                    setFilters({
+                      onlyVerified: false,
+                      starOnly: false,
+                      maxPrice: 200,
+                      dateRange: null,
+                    });
+                    setActiveBadge(null);
+                    setCurrentPage(1);
+                  }}
+                  className="text-orange-500 underline hover:text-orange-600"
+                >
+                  clear all filters
+                </button>{" "}
+                and try again.
+              </p>
+            </div>
+          ) : (filteredWoofers.map((woofer) => (
                   <Link key={woofer.uid} href={`/woofers/${woofer.uid}`}>
                     <motion.div
                       variants={cardVariants}
@@ -323,14 +350,20 @@ export default function Service({ params }: { params: Promise<{ slug: string }> 
                           <span className="text-sm text-gray-400">({woofer.numberOfReviews})</span>
                         </div>
 
-                        <div className="mt-3 flex flex-col items-start">
-                          <p className="text-sm text-gray-600">{woofer.services?.[0]}</p>
-                          <p className="text-lg font-bold text-gray-800">${woofer.price}</p>
+                        <div className="mt-3 flex justify-between items-start">
+                          <div>
+                            <p className="text-sm text-gray-600">{woofer.services?.[0]}</p>
+                            <p className="text-lg font-bold text-gray-800">${woofer.price}</p>
+                          </div>
+                          { woofer.isStar &&
+                          <Image src="/heart-star.png" alt="star woofer" width={100} height={100} className="w-6 h-6" />
+                          }
+                        
                         </div>
                       </div>
                     </motion.div>
                   </Link>
-                ))}
+                )) )}
               </AnimatePresence>
             </div>
 

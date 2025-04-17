@@ -169,7 +169,6 @@ allWoofers.map((woofer) => {
 })
 
 if (typeof window !== "undefined") {
-  console.log('entra aqui')
   window.localStorage.setItem('woofers', JSON.stringify(mappedWoofers))
   window.localStorage.setItem('services', JSON.stringify(services))
 }

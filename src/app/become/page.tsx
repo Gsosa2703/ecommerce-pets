@@ -129,7 +129,6 @@ export default function BecomeWooferPage() {
       agreedToTerms,
     };
     console.log("Submitting:", payload);
-    alert("Form submitted! Check the console for data.");
   };
 
   const progressValue = (currentStep / 3) * 100;

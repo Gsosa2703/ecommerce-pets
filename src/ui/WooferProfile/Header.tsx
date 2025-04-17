@@ -44,16 +44,16 @@ export default function WooferProfileHeader({woofer}: {woofer: IWoofer}) {
           </div>
 
           {/* Column 2: Services, Badges, Star Woofer Info (col-span-6) */}
-          <div className="md:col-span-6 flex flex-col gap-4">
+          <div className="icons-header md:col-span-6 flex flex-col gap-4">
             {/* Services */}
             <div className="flex flex-wrap gap-2">
               {services?.map((svc, i) => (
                 <Badge key={i} variant="outline" className="text-base border-none">
-                  {svc === "Grooming" && <ScissorsIcon className="mr-1 h-4 w-4" />}
+                  {svc === "Grooming" && <ScissorsIcon className="mr-1 h-6 w-6" />}
                   {svc === "DogWalk" && <SparklesIcon className="mr-1 h-4 w-4" />}
                   {svc === "Training" && <AcademicCapIcon className="mr-1 h-4 w-4" />}
                   {svc === "Vet" && <IdentificationIcon className="mr-1 h-4 w-4" />}
-                  {svc === "PetSitting" && <HomeIcon className="mr-1 h-4 w-4" />}
+                  {svc === "PetSitting" && <HomeIcon className="mr-1 h-6 w-6" />}
                   {svc}
                 </Badge>
               ))}
